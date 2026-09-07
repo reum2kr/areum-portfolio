@@ -67,6 +67,14 @@ html {
   border-bottom: none !important;
   display: block;
 }
+  .evidence-modal { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; }
+.evidence-modal[hidden] { display: none; }
+.evidence-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.75); }
+.evidence-modal-content { position: relative; max-width: 90vw; max-height: 90vh; background: #ffffff; border-radius: 8px; padding: 20px; overflow-y: auto; }
+.evidence-modal-content img { max-width: 85vw; max-height: 75vh; display: block; border-radius: 4px; }
+.evidence-modal-caption { margin: 14px 0 0; font-size: 14px; color: #333; text-align: center; }
+.evidence-modal-close { position: absolute; top: -36px; right: 0; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; }
+button.evidence-link { background: none; border: none; padding: 0; font: inherit; cursor: pointer; }
   body{
     font-family:var(--body);
     background:var(--paper);
@@ -706,6 +714,14 @@ html {
     </div>
   </div>
 </section>
+  <div id="evidence-modal" class="evidence-modal" hidden>
+  <div class="evidence-modal-backdrop"></div>
+  <div class="evidence-modal-content">
+    <button type="button" class="evidence-modal-close" aria-label="닫기">×</button>
+    <img id="evidence-modal-img" src="" alt="근거 이미지">
+    <p id="evidence-modal-caption" class="evidence-modal-caption"></p>
+  </div>
+</div>
 
 <!-- CONNECT -->
 <section id="contact">
@@ -749,7 +765,22 @@ html {
     <span>BUILT WITH <b>♥</b> AND CODE</span>
   </div>
 </footer>
-
+<script>
+  document.querySelectorAll('[data-evidence-img]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById('evidence-modal');
+      const img = document.getElementById('evidence-modal-img');
+      const caption = document.getElementById('evidence-modal-caption');
+      img.src = btn.getAttribute('data-evidence-img');
+      caption.textContent = btn.getAttribute('data-evidence-caption') || '';
+      modal.hidden = false;
+    });
+  });
+  const modal = document.getElementById('evidence-modal');
+  modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => modal.hidden = true);
+  modal.querySelector('.evidence-modal-close').addEventListener('click', () => modal.hidden = true);
+</script>
+  
 <script>
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
