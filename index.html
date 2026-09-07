@@ -712,7 +712,10 @@ button.evidence-link { background: none; border: none; padding: 0; font: inherit
           <p class="sar-block"><b>상황</b> — 리눅스 서버를 처음 설치·운영해야 하는 상황에서 유닉스/리눅스의 계보와 배포판 차이부터 이해해야 했음</p>
           <p class="sar-block"><b>행동</b> — 유닉스에서 리눅스로 이어지는 계보(레드햇·데비안 계열)와 CentOS 배포 구조를 이해하고, CentOS 9 설치 이후 커널 버전·IP 주소·라우팅 정보 확인, 네트워크 관리자 설정 등 서버 기본 설정을 명령어로 직접 수행</p>
           <p class="sar-block"><b>결과</b> — 리눅스 서버를 처음부터 설치·설정할 수 있는 기본적인 운영 역량 확보</p>
-          <a class="evidence-link" href="#work">근거 보러 가기 →</a>
+          <button type="button" class="리눅스-link" 
+  data-evidence-img="리눅스.png" 
+  data-evidence-caption="[ 리눅스 서버를 사용한 후 AI에게 점검 받았다. ]">
+  근거 보러 가기 →
         </div>
       </div>
     </div>
@@ -784,7 +787,36 @@ button.evidence-link { background: none; border: none; padding: 0; font: inherit
   modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => modal.hidden = true);
   modal.querySelector('.evidence-modal-close').addEventListener('click', () => modal.hidden = true);
 </script>
-  
+  <script>
+  document.querySelectorAll('[data-이중화.img]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById('evidence-modal');
+      const img = document.getElementById('evidence-modal-img');
+      const caption = document.getElementById('evidence-modal-caption');
+      img.src = btn.getAttribute('data-이중화.img');
+      caption.textContent = btn.getAttribute('data-evidence-caption') || '';
+      modal.hidden = false;
+    });
+  });
+  const modal = document.getElementById('evidence-modal');
+  modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => modal.hidden = true);
+  modal.querySelector('.evidence-modal-close').addEventListener('click', () => modal.hidden = true);
+</script>
+  <script>
+  document.querySelectorAll('[data-리눅스img]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById('evidence-modal');
+      const img = document.getElementById('evidence-modal-img');
+      const caption = document.getElementById('evidence-modal-caption');
+      img.src = btn.getAttribute('data-리눅스img');
+      caption.textContent = btn.getAttribute('data-evidence-caption') || '';
+      modal.hidden = false;
+    });
+  });
+  const modal = document.getElementById('evidence-modal');
+  modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => modal.hidden = true);
+  modal.querySelector('.evidence-modal-close').addEventListener('click', () => modal.hidden = true);
+</script>
 <script>
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
