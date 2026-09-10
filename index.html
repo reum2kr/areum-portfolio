@@ -792,32 +792,38 @@ button.evidence-link { background: none; border: none; padding: 0; font: inherit
   modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => modal.hidden = true);
   modal.querySelector('.evidence-modal-close').addEventListener('click', () => modal.hidden = true);
 </script>
-  <script>
-  document.querySelectorAll('[data-이중화.img]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = document.getElementById('evidence-modal');
-      const img = document.getElementById('evidence-modal-img');
-      const caption = document.getElementById('evidence-modal-caption');
-      img.src = btn.getAttribute('data-이중화.img');
-      caption.textContent = btn.getAttribute('data-evidence-caption') || '';
-      modal.hidden = false;
-    });
+<script>
+const modal = document.getElementById('evidence-modal');
+const img = document.getElementById('evidence-modal-img');
+const caption = document.getElementById('evidence-modal-caption');
+
+/* 이중화 Evidence */
+document.querySelectorAll('[data-이중화.img]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    img.src = btn.getAttribute('data-이중화.img');
+    caption.textContent = btn.getAttribute('data-evidence-caption') || '';
+    modal.hidden = false;
   });
-  const modal = document.getElementById('evidence-modal');
-  modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => modal.hidden = true);
-  modal.querySelector('.evidence-modal-close').addEventListener('click', () => modal.hidden = true);
+});
+
+/* 리눅스 Evidence */
+document.querySelectorAll('[data-리눅스img]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    img.src = btn.getAttribute('data-리눅스img');
+    caption.textContent = btn.getAttribute('data-evidence-caption') || '';
+    modal.hidden = false;
+  });
+});
+
+/* 모달 닫기 */
+modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => {
+  modal.hidden = true;
+});
+
+modal.querySelector('.evidence-modal-close').addEventListener('click', () => {
+  modal.hidden = true;
+});
 </script>
-  <script>
-  document.querySelectorAll('[data-리눅스img]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = document.getElementById('evidence-modal');
-      const img = document.getElementById('evidence-modal-img');
-      const caption = document.getElementById('evidence-modal-caption');
-      img.src = btn.getAttribute('data-리눅스img');
-      caption.textContent = btn.getAttribute('data-evidence-caption') || '';
-      modal.hidden = false;
-    });
-  });
   const modal = document.getElementById('evidence-modal');
   modal.querySelector('.evidence-modal-backdrop').addEventListener('click', () => modal.hidden = true);
   modal.querySelector('.evidence-modal-close').addEventListener('click', () => modal.hidden = true);
